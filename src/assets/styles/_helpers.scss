@@ -1,0 +1,707 @@
+@use 'sass:math';
+@import 'config';
+
+.d {
+  &-none {
+    display: none !important;
+  }
+
+  &-flex {
+    display: flex !important;
+  }
+
+  &-block {
+    display: block !important;
+  }
+
+  &-inline {
+    display: inline !important;
+
+    &-block {
+      display: inline-block !important;
+    }
+
+    &-flex {
+      display: inline-flex !important;
+    }
+  }
+}
+
+.flex {
+  &-center {
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  &-shrink {
+    &-0 {
+      flex-shrink: 0 !important;
+    }
+
+    &-1 {
+      flex-shrink: 1 !important;
+    }
+  }
+
+  &-grow {
+    &-1 {
+      flex-grow: 1;
+    }
+  }
+
+  &-direction {
+    &-column {
+      flex-direction: column !important;
+    }
+  }
+
+  &-wrap {
+    flex-wrap: wrap !important;
+  }
+
+  $gapSizes: 4, 8, 10, 12, 14, 15, 16, 20, 24, 44;
+
+  @each $size in $gapSizes {
+    &-gap-#{$size} {
+      gap: #{$size}px !important;
+    }
+  }
+}
+
+.align-items {
+  &-start {
+    align-items: flex-start !important;
+  }
+
+  &-baseline {
+    align-items: baseline !important;
+  }
+
+  &-center {
+    align-items: center !important;
+  }
+
+  &-end {
+    align-items: flex-end !important;
+  }
+}
+
+.align-self {
+  &-start {
+    align-self: flex-start !important;
+  }
+
+  &-center {
+    align-self: center;
+  }
+
+  &-end {
+    align-self: flex-end !important;
+  }
+}
+
+.justify-content {
+  &-between {
+    justify-content: space-between !important;
+  }
+
+  &-center {
+    justify-content: center !important;
+  }
+
+  &-end {
+    justify-content: flex-end !important;
+  }
+
+  &-start {
+    justify-content: flex-start !important;
+  }
+}
+
+.vertical-align-middle {
+  vertical-align: middle !important;
+}
+
+.text {
+  &-center {
+    text-align: center !important;
+  }
+
+  &-left {
+    text-align: left !important;
+  }
+
+  &-right {
+    text-align: right !important;
+  }
+
+  &-top {
+    vertical-align: top !important;
+  }
+
+  &-truncate {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &-pre-wrap {
+    white-space: pre-wrap !important;
+  }
+
+  &-nowrap {
+    white-space: nowrap !important;
+  }
+
+  &-wrap {
+    white-space: normal !important;
+  }
+
+  &-underline {
+    text-decoration: underline !important;
+    text-underline-position: under;
+  }
+
+  &-capitalize {
+    text-transform: capitalize !important;
+  }
+
+  &-break-word {
+    overflow-wrap: break-word !important;
+  }
+
+  &-break-line {
+    line-break: anywhere !important;
+  }
+}
+
+.c {
+  @each $name, $color in $colors {
+    &-#{$name} {
+      color: $color !important;
+    }
+
+    &-bg-#{$name} {
+      background-color: $color !important;
+    }
+
+    &-primary {
+      color: var(--primary-color) !important;
+    }
+
+    &-bg-primary {
+      background-color: var(--primary-color) !important;
+    }
+  }
+
+  &-bg-none {
+    background: none !important;
+  }
+
+  &-cc {
+    color: currentColor !important;
+  }
+}
+
+.f {
+  &s {
+    $sizes: 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 28, 30, 32, 35, 36, 40;
+
+    @each $size in $sizes {
+      &-#{$size} {
+        font-size: #{$size}px !important;
+      }
+    }
+  }
+
+  &w {
+    &-400 {
+      font-weight: 400 !important;
+    }
+
+    &-500 {
+      font-weight: 500 !important;
+    }
+
+    &-600 {
+      font-weight: 600 !important;
+    }
+
+    &-700 {
+      font-weight: 700 !important;
+    }
+  }
+}
+
+.l {
+  &h {
+    $sizes: 11, 14, 15, 16, 18, 19, 20, 22, 24, 25, 26, 28, 30, 34, 36, 40;
+
+    @each $size in $sizes {
+      &-#{$size} {
+        @if $size == 1 {
+          line-height: #{$size} !important;
+        } @else {
+          line-height: #{$size}px !important;
+        }
+      }
+    }
+
+    &-1 {
+      line-height: 1 !important;
+    }
+  }
+
+  $sizes: 0, 10, 23;
+
+  @each $size in $sizes {
+    &-#{$size} {
+      left: #{$size}px !important;
+    }
+  }
+}
+
+.t {
+  $sizes: 0, 4, 6, 7, 18, 21, 24, 28, 36, 60;
+
+  @each $size in $sizes {
+    &-#{$size} {
+      top: #{$size}px !important;
+    }
+  }
+}
+
+.b {
+  $sizes: 0, 12, 80;
+
+  @each $size in $sizes {
+    &-#{$size} {
+      bottom: #{$size}px !important;
+    }
+  }
+}
+
+.r {
+  $sizes: 0, 4, 11, 14;
+
+  @each $size in $sizes {
+    &-#{$size} {
+      right: #{$size}px !important;
+    }
+  }
+}
+
+.s {
+  $sizes: 12, 14, 17, 18, 19, 20, 22, 24, 28, 32, 35, 40, 42, 44, 48, 50, 60;
+
+  @each $size in $sizes {
+    &-#{$size} {
+      width: #{$size}px !important;
+      height: #{$size}px !important;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.w {
+  $sizes: 1, 8, 16, 32, 38, 40, 44, 48, 50, 54, 65, 70, 82, 85, 90, 100, 120, 124, 130, 146, 150, 156, 160, 180, 200, 215,
+    230, 252, 264, 280, 290, 312, 1200;
+
+  @each $size in $sizes {
+    &-#{$size} {
+      width: #{$size}px !important;
+    }
+  }
+
+  $sizes: 25, 30, 40, 50, 60, 75, 100;
+
+  @each $size in $sizes {
+    &-#{$size}p {
+      width: #{$size} + unquote('%') !important;
+    }
+  }
+
+  $sizes: 50, 110, 250, 290, 295, 310;
+
+  @each $size in $sizes {
+    &-max-#{$size} {
+      max-width: #{$size}px !important;
+    }
+  }
+  $sizes: 100;
+
+  @each $size in $sizes {
+    &-max-#{$size}p {
+      max-width: #{$size}px !important;
+    }
+  }
+
+  $sizes: 40, 50;
+
+  @each $size in $sizes {
+    &-min-#{$size} {
+      min-width: #{$size}px !important;
+    }
+  }
+
+  $sizes: 33, 45, 50, 90, 100;
+
+  @each $size in $sizes {
+    &-max-#{$size}p {
+      max-width: #{$size} + unquote('%') !important;
+    }
+  }
+
+  &-max-100p {
+    max-width: 100% !important;
+  }
+
+  &-auto {
+    width: auto !important;
+  }
+}
+
+.h {
+  $sizes: 1, 2, 3, 4, 8, 9, 12, 16, 18, 20, 22, 24, 28, 30, 32, 34, 36, 40, 42, 44, 48, 50, 54, 56, 60, 64, 72, 75, 95,
+    96, 100, 130, 150, 176, 200, 226, 240, 270, 360, 450, 829;
+
+  @each $size in $sizes {
+    &-#{$size} {
+      height: #{$size}px !important;
+    }
+  }
+
+  $sizes: 1, 48, 120, 124, 150, 200, 250, 700;
+
+  @each $size in $sizes {
+    &-min-#{$size} {
+      min-height: #{$size}px !important;
+    }
+  }
+
+  $sizes: 75, 80, 100;
+
+  @each $size in $sizes {
+    &-#{$size}p {
+      height: #{$size} + '%' !important;
+    }
+  }
+
+  $sizes: 95;
+
+  @each $size in $sizes {
+    &-max-#{$size}p {
+      max-height: #{$size} + unquote('%') !important;
+    }
+  }
+
+  &-max-100p {
+    max-height: 100% !important;
+  }
+
+  &-auto {
+    height: auto !important;
+  }
+}
+
+.m {
+  $sizes: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 26, 27, 28, 30, 32, 34, 35, 36, 38, 40,
+    42, 43, 48, 50, 62, 64, 68, 70, 72, 74, 78, 80, 96, 100, 112, 120, 122, 123, 130, 200, 0;
+
+  @each $size in $sizes {
+    &-#{$size} {
+      margin: #{$size}px !important;
+    }
+
+    &t-#{$size} {
+      margin-top: #{$size}px !important;
+    }
+
+    &t-n#{$size} {
+      margin-top: -#{$size}px !important;
+    }
+
+    &b-#{$size} {
+      margin-bottom: #{$size}px !important;
+    }
+
+    &b-n#{$size} {
+      margin-bottom: -#{$size}px !important;
+    }
+
+    &l-#{$size} {
+      margin-left: #{$size}px !important;
+    }
+
+    &l-n#{$size} {
+      margin-left: -#{$size}px !important;
+    }
+
+    &r-#{$size} {
+      margin-right: #{$size}px !important;
+    }
+
+    &r-n#{$size} {
+      margin-right: -#{$size}px !important;
+    }
+
+    &x-#{$size} {
+      margin-left: #{$size}px !important;
+      margin-right: #{$size}px !important;
+    }
+
+    &x-n#{$size} {
+      margin-left: -#{$size}px !important;
+      margin-right: -#{$size}px !important;
+    }
+
+    &y-#{$size} {
+      margin-top: #{$size}px !important;
+      margin-bottom: #{$size}px !important;
+    }
+  }
+
+  &t-auto {
+    margin-top: auto !important;
+  }
+
+  &b-auto {
+    margin-bottom: auto !important;
+  }
+
+  &l-auto {
+    margin-left: auto !important;
+  }
+
+  &x-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  &y-auto {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+}
+
+.p {
+  $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 27, 28, 32, 34, 40, 48, 50, 54, 60,
+    70, 100, 120, 0;
+
+  @each $size in $sizes {
+    &-#{$size} {
+      padding: #{$size}px !important;
+    }
+
+    &t-#{$size} {
+      padding-top: #{$size}px !important;
+    }
+
+    &b-#{$size} {
+      padding-bottom: #{$size}px !important;
+    }
+
+    &l-#{$size} {
+      padding-left: #{$size}px !important;
+    }
+
+    &r-#{$size} {
+      padding-right: #{$size}px !important;
+    }
+
+    &x-#{$size} {
+      padding-left: #{$size}px !important;
+      padding-right: #{$size}px !important;
+    }
+
+    &y-#{$size} {
+      padding-top: #{$size}px !important;
+      padding-bottom: #{$size}px !important;
+    }
+  }
+
+  &t-100p {
+    padding-top: 100% !important;
+  }
+}
+
+.z {
+  $sizes: 0, 1, 2, 3, 4, 5, 999;
+
+  @each $size in $sizes {
+    &-#{$size} {
+      z-index: #{$size} !important;
+    }
+  }
+
+  &-auto {
+    z-index: auto !important;
+  }
+}
+
+.o {
+  $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9;
+
+  @each $size in $sizes {
+    &-#{$size} {
+      opacity: math.div($size, 10) !important;
+    }
+  }
+}
+
+.position {
+  &-fixed {
+    position: fixed !important;
+  }
+
+  &-absolute {
+    position: absolute !important;
+  }
+
+  &-relative {
+    position: relative !important;
+  }
+
+  &-sticky {
+    position: sticky !important;
+  }
+
+  &-unset {
+    position: unset !important;
+  }
+}
+
+.overflow {
+  &-hidden {
+    overflow: hidden !important;
+  }
+
+  &-auto {
+    overflow: auto !important;
+  }
+}
+
+.pe {
+  &-n {
+    pointer-events: none !important;
+  }
+}
+
+.br {
+  $sizes: 1, 2, 3, 4, 5, 8, 10, 11, 12, 13, 15, 16, 22, 30, 42;
+
+  @each $size in $sizes {
+    &-#{$size} {
+      border-radius: #{$size}px !important;
+    }
+
+    &-tl-#{$size} {
+      border-top-left-radius: #{$size}px !important;
+    }
+
+    &-tr-#{$size} {
+      border-top-right-radius: #{$size}px !important;
+    }
+
+    &-bl-#{$size} {
+      border-bottom-left-radius: #{$size}px !important;
+    }
+
+    &-br-#{$size} {
+      border-bottom-right-radius: #{$size}px !important;
+    }
+  }
+}
+
+.sm {
+  $sizes: 12, 14, 16;
+
+  @each $size in $sizes {
+    &t-#{$size} {
+      .sm-item + .sm-item {
+        margin-top: #{$size}px !important;
+      }
+    }
+  }
+}
+
+.rounded {
+  &-circle {
+    border-radius: 50% !important;
+  }
+}
+
+.border {
+  @each $name, $color in $colors {
+    &-#{$name} {
+      border: 1px solid $color !important;
+    }
+
+    &-2-#{$name} {
+      border: 2px solid $color !important;
+    }
+
+    &-shadow-#{$name} {
+      box-shadow: 0 0 0 1px $color inset !important;
+    }
+  }
+
+  &-primary {
+    border: 1px solid var(--primary-color) !important;
+  }
+
+  &-2-primary {
+    border: 2px solid var(--primary-color) !important;
+  }
+
+  &-0 {
+    border: 0 !important;
+  }
+}
+
+.shadow {
+  &-none {
+    box-shadow: none !important;
+  }
+}
+
+.transition {
+  &-none {
+    transition: none !important;
+
+    &:before,
+    &:after {
+      transition: none !important;
+    }
+  }
+}
+
+.hide {
+  &-first-child {
+    &:first-child {
+      display: none !important;
+    }
+  }
+
+  &-last-child {
+    &:last-child {
+      display: none !important;
+    }
+  }
+}
+
+.visibility {
+  &-visible {
+    visibility: visible;
+  }
+  &-hidden {
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+.cursor {
+  &-pointer {
+    cursor: pointer;
+  }
+}

@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useLayoutEffect } from 'react';
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import { userStore } from './stores/UserStore';
+import './assets/styles/common.scss';
+import Main from './pages/Main';
+import Auth from './pages/Auth';
+import ClusterPage from './pages/ClusterPage';
 
-function App() {
+const App = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useLayoutEffect(() => {
+    if (userStore.isAuth) return;
+
+    navigate('/auth');
+  }, [userStore.isAuth, location.pathname]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="content-layout">
+      <Routes>
+        <Route path="/" element={<Main/>} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/cluster/:id" element={<ClusterPage />} />
+
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </div>
   );
 }
 
-export default App;
+export default observer(App);

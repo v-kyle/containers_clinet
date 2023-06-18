@@ -1,0 +1,49 @@
+@import 'config';
+
+:root {
+  --primary-color: #2442e8;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  color: map-get($colors, 'text-primary');
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+* {
+  box-sizing: border-box;
+  outline: 0;
+  touch-action: pan-y pan-x;
+  font-family: Roboto, sans-serif;
+
+  &:before,
+  &:after {
+    box-sizing: border-box;
+    touch-action: pan-y pan-x;
+  }
+}
+
+a {
+  color: map-get($colors, 'text-primary');
+  text-decoration: none;
+
+  &:hover {
+    color: map-get($colors, 'text-primary');
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,43 @@
+@import 'config';
+
+.btn {
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 15px;
+  line-height: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  border: 0;
+  font-family: Roboto, sans-serif;
+  transition: opacity 0.25s ease-in-out;
+  cursor: pointer;
+
+  &._space-between {
+    justify-content: space-between;
+  }
+
+  &._primary {
+    background: var(--primary-color);
+    color: var(--primary-text-color);
+
+    .desktop-layout &:hover {
+      background: linear-gradient(0deg, rgba(204, 212, 255, 0.15), rgba(204, 212, 255, 0.15)), var(--primary-color);
+    }
+  }
+
+  &._secondary {
+    background: map-get($colors, 'lgray');
+    color: #1c1d1f;
+  }
+
+  &._disabled,
+  &[disabled] {
+    opacity: 0.4;
+  }
+
+  &._disabled {
+    pointer-events: none !important;
+  }
+}
